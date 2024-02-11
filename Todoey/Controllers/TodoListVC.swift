@@ -26,12 +26,8 @@ class TodoListVC: UITableViewController {
         
         cell.textLabel?.text = item.title
         
-        if item.done == true {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
-        
+        cell.accessoryType = item.done ? .checkmark : .none
+                
         return cell
     }
     
