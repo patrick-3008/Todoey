@@ -9,6 +9,7 @@ class TodoListVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("location: \(dataFilePath!)")
         loadItems()
     }
     
@@ -19,11 +20,9 @@ class TodoListVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
-        
         let item = itemArray[indexPath.row]
         
         cell.textLabel?.text = item.title
-        
         cell.accessoryType = item.done ? .checkmark : .none
                 
         return cell
@@ -32,11 +31,9 @@ class TodoListVC: UITableViewController {
     //MARK - TableView Delegate Method
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("index: \(indexPath.row)")
-        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
         saveItems()
-        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -47,13 +44,13 @@ class TodoListVC: UITableViewController {
         let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             // when user press the Add Item button
-            print("item added: \(textField.text ?? "nil value")")
             
             let newItem = Item()
             newItem.title = textField.text!
             self.itemArray.append(newItem)
             
             self.saveItems()
+            print("item added: \(textField.text ?? "nil value")")
         }
         alert.addTextField{ (alertTextFiled) in
             alertTextFiled.placeholder = "Create new item"
@@ -87,4 +84,5 @@ class TodoListVC: UITableViewController {
             }
         }
     }
+    
 }
