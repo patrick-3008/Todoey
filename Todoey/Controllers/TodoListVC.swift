@@ -52,7 +52,7 @@ class TodoListVC: UITableViewController {
             self.saveItems()
             print("item added: \(textField.text ?? "nil value")")
         }
-        alert.addTextField{ (alertTextFiled) in
+        alert.addTextField { (alertTextFiled) in
             alertTextFiled.placeholder = "Create new item"
             textField = alertTextFiled
         }
