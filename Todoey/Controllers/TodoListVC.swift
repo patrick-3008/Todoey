@@ -68,6 +68,7 @@ class TodoListVC: UITableViewController {
     func saveItems() {
         do {
             try context.save()
+            print("context saved")
         } catch {
             print("Error saving context \(error)")
         }
