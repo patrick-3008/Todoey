@@ -12,7 +12,7 @@ class TodoListVC: UITableViewController {
         super.viewDidLoad()
         
         print("location: \(dataFilePath!)")
-        /*loadItems()*/
+        //loadItems()
     }
     
     //MARK - Tableview Datasource Methods
