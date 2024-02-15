@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-class TodoListVC: UITableViewController {
+class TodoListVC: UITableViewController  {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
@@ -12,10 +12,11 @@ class TodoListVC: UITableViewController {
         
         print("location: \(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))")
         
+        
         loadItems()
     }
     
-    //MARK - Tableview Datasource Methods
+    //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         itemArray.count
     }
@@ -30,18 +31,18 @@ class TodoListVC: UITableViewController {
         return cell
     }
     
-    //MARK - TableView Delegate Method
+    //MARK: - TableView Delegate Method
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("index: \(indexPath.row)")
-        //itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done
         
-        context.delete(itemArray[indexPath.row])
-        itemArray.remove(at: indexPath.row)
+        //context.delete(itemArray[indexPath.row])
+        //itemArray.remove(at: indexPath.row)
         saveItems()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    //MARK - Add New Items
+    //MARK: - Add New Items
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
@@ -66,7 +67,7 @@ class TodoListVC: UITableViewController {
         present(alert,animated: true, completion: nil)
     }
     
-    //MARK - Model Manupulation Methods
+    //MARK: - Model Manupulation Methods
     func saveItems() {
         do {
             try context.save()
@@ -86,4 +87,29 @@ class TodoListVC: UITableViewController {
         }
     }
     
+}
+
+// MARK: - Search bar methods
+
+extension TodoListVC: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        request.predicate = predicate
+        
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        
+        request.sortDescriptors = [sortDescriptor]
+        
+        do {
+            itemArray = try context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+        
+        tableView.reloadData()
+    }
 }
