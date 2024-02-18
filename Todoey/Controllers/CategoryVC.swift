@@ -25,7 +25,19 @@ class CategoryVC: UITableViewController {
         
         return cell
     }
-
+    
+    //MARK: - TableView Delegate Methods
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToItems", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TodoListVC
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = categories[indexPath.row]
+        }
+    }
 
     //MARK: - Data Manipulation Methods
     func saveCategoryies() {
@@ -68,10 +80,6 @@ class CategoryVC: UITableViewController {
             textField.placeholder = "Add a new Category"
         }
         present(alert, animated: true, completion: nil)
-    } 
+    }
     
-
-    //MARK: - TableView Delegate Methods
-    
-
 }
