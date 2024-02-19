@@ -1,7 +1,7 @@
 import Foundation
 import RealmSwift
 
-class Data: Object {
+class Category: Object {
     @objc dynamic var name: String = ""
-    @objc dynamic var age: Int = 0
+    let items = List<Item>()
 }
