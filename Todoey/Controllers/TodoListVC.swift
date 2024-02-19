@@ -25,6 +25,7 @@ class TodoListVC: UITableViewController  {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        
         if let item = toDoItems?[indexPath.row] {
             cell.textLabel?.text = item.title
             cell.accessoryType = item.done ? .checkmark : .none
@@ -37,12 +38,17 @@ class TodoListVC: UITableViewController  {
     
     //MARK: - TableView Delegate Method
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("index: \(indexPath.row)")
-//        toDoItems[indexPath.row].done = !toDoItems[indexPath.row].done
         
-        //context.delete(itemArray[indexPath.row])
-        //itemArray.remove(at: indexPath.row)
-//        saveItems()
+        if let item = toDoItems?[indexPath.row] {
+            do {
+                try realm.write {
+                    item.done = !item.done
+                }
+            } catch {
+                print("Error saving done status, \(error)")
+            }
+        }
+        tableView.reloadData()
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
