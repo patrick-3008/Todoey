@@ -102,15 +102,20 @@ extension CategoryVC: SwipeTableViewCellDelegate {
                 } catch {
                     print("Error deleting category, \(error)")
                 }
-                tableView.reloadData()
                 print("item deleted")
             }
         }
 
-        // customize the action appearance
         deleteAction.image = UIImage(named: "delete-icon")
 
         return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
+        var options = SwipeOptions()
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        return options
     }
     
 }
