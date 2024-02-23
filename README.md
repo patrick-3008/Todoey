@@ -11,10 +11,10 @@ Todoey is a simple iOS app built using UIKit that helps you manage your tasks an
 
 ## Screenshots
 
-<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/77d8b30d-6f34-4c3b-a911-64e011cbf010" width = "220">
-<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/e13c3847-0823-45cd-a3b0-04671f0a9aca" width = "220">
-<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/680821b9-06f8-4a35-b61d-a249a0421fd6" width = "220">
-<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/ad467ed5-a199-475b-bc01-52bd7efd7e9f" width = "220">
+<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/77d8b30d-6f34-4c3b-a911-64e011cbf010" width = "200">
+<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/e13c3847-0823-45cd-a3b0-04671f0a9aca" width = "200">
+<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/680821b9-06f8-4a35-b61d-a249a0421fd6" width = "200">
+<img src = "https://github.com/patrick-3008/Todoey/assets/121394398/ad467ed5-a199-475b-bc01-52bd7efd7e9f" width = "200">
 
 ## Getting Started
 
