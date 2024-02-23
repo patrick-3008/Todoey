@@ -20,7 +20,7 @@ Todoey is a simple iOS app built using UIKit that helps you manage your tasks an
 
 To get started with Todoey, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/yourusername/todoey.git`
+1. Clone the repository: `git clone https://github.com/patrick-3008/Todoey.git`
 2. Open the project in Xcode.
 3. Build and run the app on a simulator or device.
 
